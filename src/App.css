@@ -1,28 +1,94 @@
-.App {
-  text-align: center;
+.facebook-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:url("images/havana.jpg") no-repeat center;
+  max-width: 30%;
+  height: 400px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 20px;
+  
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background:tan url("/images/havana.jpg") no-repeat center; */
+  background-size:cover;
+  /* background-color: rgb(255, 253, 162); */
+  max-width: 40%;
+  height: 400px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.container h2 {
+  font:2em bold Georgia;
+  margin: 10px auto;
 }
 
-.App-title {
+.container form {
+  margin: auto;
+  max-width:100%;
+  
+}
+
+.input-buttons input,
+.input-buttons button {
+  padding-left:10px;
+  margin:5px;
+  height: 30px;
+  border-radius: 10px;
   font-size: 1.5em;
 }
-
-.App-intro {
-  font-size: large;
+.container button {
+  background-color: tan;
+  font:1em Arial;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.input-buttons {
+  max-width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px 50px;
+  padding: 10px;
+}
+.input-buttons .facebook-button{
+  
+  border-radius:0px;
+  background-color: rgba(255, 253, 255, 0.0);
+  margin:20px auto;
+  width:75%;
+  padding:0;
+  border:0;
+}
+.input-buttons .facebook-input{
+  font:1em Arial;
+  
+}
+.facebook-button img{
+  width: 100%
+}
+/* #facebook{
+  width:75%;
+  height:50px;
+} */
+
+.inner-box {
+  border-radius: 10px;
+  width:80%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+background-color: rgba(255, 253, 255, 0.6)    
+}
+.inner-box a{
+  font: bold 1em Serif;
 }
