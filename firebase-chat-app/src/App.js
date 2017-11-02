@@ -19,7 +19,6 @@ setName = () => {
 //therefore, I'm using arrow notation to bind the "This" to the parent app.js component here, so that
 //it will set the state.chatNum of this parent component.
 chooseChat = (number) =>{
-  console.log("changing this.state.chatNum")
   this.setState({chatNum:number})
 }
 
