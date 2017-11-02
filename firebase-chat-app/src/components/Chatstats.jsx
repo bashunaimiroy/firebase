@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from "firebase";
-import './App.css';
+// import havana from './images/havana.jpg';
 
 var config = {
   apiKey: "AIzaSyC6Mdq8bYCdiZN7J1Kpuovj_FSASKbBMJg",
@@ -11,14 +11,15 @@ var config = {
   messagingSenderId: "321603513191"
 };
 firebase.initializeApp(config);
+const database = firebase.database();
 
-class App extends Component {
-  render() {
-    return (<div>
-      
-    </div>
-         );
-  }
+class Chatstats extends Component(){
+    constructor(){
+
+    }
+    render(){
+        <div className="inner-box sidebar">
+
+        </div>
+    }
 }
-
-export default App;
