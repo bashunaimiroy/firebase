@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from "firebase";
 import Chatbox from "./components/Chatbox.js"
 import { BrowserRouter, Route, Link } from "react-router-dom"
 // import havana from './images/havana.jpg';
@@ -19,7 +18,8 @@ setName = () => {
 //therefore, I'm using arrow notation to bind the "This" to the parent app.js component here, so that
 //it will set the state.chatNum of this parent component.
 chooseChat = (number) =>{
-  this.setState({chatNum:number})
+  number!==this.state.chatNum?
+  this.setState({chatNum:number}):null;
 }
 
   render() {
@@ -33,8 +33,8 @@ chooseChat = (number) =>{
           <Route path="/chat" render={() => {
             return (
             
-              <Chatbox chatroom={this.state.chatNum} name={this.state.userName} chooseChat={this.chooseChat}>
-            </Chatbox>)
+              <Chatbox chatroom={this.state.chatNum} name={this.state.userName} chooseChat={this.chooseChat}/>
+            )
           }
           } />
           <Route exact={true} path="/" render={() => {return (<div>

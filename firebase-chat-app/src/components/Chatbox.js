@@ -28,33 +28,24 @@ class Chatbox extends Component {
       "Chatbox component mounted and I added listeners to database chatroom " + this.props.chatroom)
   }
 
-  componentDidUpdate(prevProps) {
+  componentWillReceiveProps(nextProps) {
+   
+   
+    console.log(`Removing listeners from ${this.props.chatroom}. Adding listeners to ${nextProps.chatroom}`)
+    //first it removes the listeners from the previously selected chatroom
+    this.leaveChatroom(this.props.chatroom)
 
-    //this fires every time the component is re-rendered by the 
-    //App.jsx parent component with a different chatroom
-    //selected.
-    if (prevProps !== this.props) {
-      console.log("props are different, chief. look:")
-      console.log(prevProps)
-      console.log(this.props)
-
-      console.log("updating with the new props now, eh. Removing and Adding listeners.")
-      //first it removes the listeners from the previously selected chatroom
-      this.leaveChatroom(prevProps.chatroom)
-
-      //then it empties the messages and members, 
-      //then adds the listeners to the new chatroom's path, which will populate the chat
-      //with messages and members
-      this.enterChatroom(this.props.chatroom)
-
-    }
+    //then it empties the messages and members, 
+    //then adds the listeners to the new chatroom's path, which will populate the chat
+    //with messages and members
+    this.enterChatroom(nextProps.chatroom)
   }
 
   enterChatroom = (newChatroom) => {
     this.setState({ messages: [], members: [`You (${this.name})`] },
       () => this.addListeners(newChatroom));
     database.ref(`members/${newChatroom}/${this.name}`).set(true);
-    console.log(`hey yu're in ${newChatroom}`);
+    console.log(`You successfully entered chatroom ${newChatroom}`);
 
 
   }
@@ -65,7 +56,7 @@ class Chatbox extends Component {
   leaveChatroom = (oldChatroom) => {
     this.removeListeners(oldChatroom);
     database.ref(`members/${oldChatroom}/${this.name}`).remove(
-      console.log("hey I de-registered you from Chatroom " + oldChatroom))
+      console.log("You successfully left Chatroom " + oldChatroom))
   }
 
   //removes listeners
@@ -188,6 +179,12 @@ class Chatbox extends Component {
     database.ref(`messages/${this.props.chatroom}`).set(null, this.setState({ messages: [] }));
 
   }
+showTwelveMessages = () =>
+  this.state.messages.slice(this.state.messages.length-12,this.state.messages.length)
+  .map((msg) => <li key={msg.timestamp}>{msg.username} : {msg.text}</li>)
+
+showFirstMessages = () => 
+  this.state.messages.slice(0,this.state.messages.length).map((msg) => <li key={msg.timestamp}>{msg.username} : {msg.text}</li>)
 
   render() {
 
@@ -195,7 +192,8 @@ class Chatbox extends Component {
       <div className="inner-box">
         <div className="chat-messages">
           <ul>
-            {this.state.messages.map((msg) => <li key={msg.timestamp}>{msg.username} : {msg.text}</li>)}
+            {this.state.messages.length>12? 
+this.showTwelveMessages():this.showFirstMessages()}
           </ul>
         </div>
         {/* when the button is clicked or you hit enter in the input box,
